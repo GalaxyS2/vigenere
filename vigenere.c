@@ -14,6 +14,8 @@ int main(int argc, string argv[])
     string key = argv[1];
     unsigned long keyCount = strlen(key);
     
+    
+    // Check that the key contains only letters.
     for (int k = 0; k < keyCount; k++)
     {
         if (!isalpha(key[k]))
@@ -22,22 +24,24 @@ int main(int argc, string argv[])
             return 1;
         }
     }
-    string p = GetString();
-    if (p == NULL)
+    string text = GetString();
+    if (text == NULL)
     {
         printf("Error message");
         return 1;
     }
     
-    for (int i = 0, l = 0; i < strlen(p); i++)
+    
+     // To encrypt the entered text to the variable textToCipher and rotate key.
+    for (int i = 0, l = 0; i < strlen(text); i++)
     {
-        if (isalpha(p[i]))
+        if (isalpha(text[i]))
         {
-            if (islower(p[i]))
-                printf("%c", ((((p[i] - 'a') + ((tolower(key[l++%strlen(key)])) - 'a') % 26) % 26) + 'a'));
+            if (islower(text[i]))
+                printf("%c", ((((text[i] - 'a') + ((tolower(key[l++%strlen(key)])) - 'a') % 26) % 26) + 'a'));
             
-            if (isupper(p[i]))
-                printf("%c", ((((p[i] - 'A') + ((toupper(key[l++%strlen(key)])) - 'A') % 26) % 26) + 'A'));
+            if (isupper(text[i]))
+                printf("%c", ((((text[i] - 'A') + ((toupper(key[l++%strlen(key)])) - 'A') % 26) % 26) + 'A'));
         }
         else
             printf("%c", p[i]);
